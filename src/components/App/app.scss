@@ -1,0 +1,9 @@
+@import '../../styles/global-variables.scss';
+@import '../../styles/media-query.scss';
+
+.app-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 600px;
+  margin: 0 auto;
+}
