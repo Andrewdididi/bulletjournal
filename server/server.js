@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.post('/entry', rh.storePost);
-app.get('/entry', rh.fetchPost);
+app.post('/entry', rh.storeEntry);
+app.get('/entry', rh.fetchEntry);
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));
 
