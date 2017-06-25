@@ -1,0 +1,46 @@
+@import './global-variables.scss';
+
+body, html {
+  overflow-x:hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: $font-family-primary;
+  font-size: 16px;
+  color: $font-primary;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 4px 0;
+}
+p {
+  margin: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input {
+  border:none;
+  appearance: none;
+  -webkit-appearance:none; 
+  color: $font-primary; 
+  width: 100%; 
+} 
+
+hr {
+  border-color: $hr-border;
+  border-style: solid none none;
+  border-width: 1px;
+  margin: 0;
+}
+
