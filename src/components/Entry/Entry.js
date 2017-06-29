@@ -10,6 +10,7 @@ export default class Entry extends Component {
     edit: PropTypes.boolean,
     text: PropTypes.string,
     type: PropTypes.string,
+    entryFunc: PropTypes.func,
   }
   constructor(props) {
     super(props);
@@ -36,10 +37,9 @@ export default class Entry extends Component {
     console.log('toggleExpand');  
   }
   render() {
-    const { type, text } = this.props;
-
+    const { type, text, entryFunc } = this.props;
     const textEntry = <p className="entry-text" onClick={this.toggleEdit}>{text}</p>;
-    const inputEntry = <EntryInput text={text} placeholder={this.state.placeholder} toggleEdit={this.toggleEdit}/>;
+    const inputEntry = <EntryInput text={this.state.text} placeholder={this.state.placeholder} toggleEdit={this.toggleEdit} entryFunc={entryFunc} />;
     return (
       <div className="entry" >
         <span className={`entry-type icon ${type}`} onClick={this.toggleComplete} ></span>

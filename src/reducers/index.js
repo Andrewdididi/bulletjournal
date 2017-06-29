@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import FetchEntry from './fetchEntry_reducer';
+import entryList from './entryList';
 
 const rootReducer = combineReducers({
-  entry: FetchEntry,
+  entryList,
 });
 
 export default rootReducer;

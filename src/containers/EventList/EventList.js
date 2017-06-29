@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types' 
 
-import { fetchEntry, newEntry } from '../../actions/index';
+import { fetchEntry, entryPlan, newEntry } from '../../actions/EntryListActions';
 import Day from '../../components/Day/Day';
 import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 
+
 class EventList extends Component {
   static propTypes = {
-    entries: PropTypes.array,
+    entryList: PropTypes.object.isRequired,
     newEntry: PropTypes.func.isRequired
   }
 
@@ -23,11 +24,23 @@ class EventList extends Component {
   }
 
   renderDay() {
-    if (this.props.entries.length < 1) {
-      return <NewBulletEntry newEntry={this.props.newEntry} fetchEntry={this.props.fetchEntry} />;
+    console.log('this.props.entryList====', this.props.entryList);
+    if (this.props.entryList.entries.length < 1) {
+      return (
+        <NewBulletEntry 
+          newEntry={this.props.entryList.entries} 
+          fetchEntry={this.props.fetchEntry} 
+        />
+      )
     }
-    console.log('this.props.entries====', this.props.entries);
-    return this.props.entries.map(entry => <Day entry={entry} newEntry={this.props.newEntry} fetchEntry={this.props.fetchEntry}/> );
+    return this.props.entryList.entries.map(entry => (
+      <Day 
+        entry={entry} 
+        newEntry={this.props.newEntry} 
+        fetchEntry={this.props.fetchEntry}
+        entryPlan={this.props.entryPlan}
+      /> 
+    ))
   }
 
   render() {
@@ -41,13 +54,14 @@ class EventList extends Component {
 }
 function MapStateToProps(state) {
   return {
-    entries: state.entry,
+    entryList: state.entryList,
   };
 }
 
 function MapDispatchToProps(dispatch) {
   return {
     fetchEntry: () => dispatch(fetchEntry()),
+    entryPlan: input => dispatch(entryPlan(input)),
     newEntry: input => dispatch(newEntry(input)),
   };
 }
