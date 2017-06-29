@@ -1,22 +1,21 @@
 import axios from 'axios';
+import { FETCH_ENTRY_SUCCESS,
+          FETCH_ENTRY_FAILURE,
+        } from './types';
 
-const FETCH_ENTRY_SUCESS = 'FETCH_ENTRY_SUCESS';
-const FETCH_ENTRY_FAIL = 'FETCH_ENTRY_FAIL';
-const ACTIVE_POST = 'ACTIVE_POST';
-const NEW_ENTRY_SUCCESS = 'NEW_ENTRY_SUCCESS';
-const NEW_ENTRY_FAIL = 'NEW_ENTRY_FAIL';
+const API_URL = 'http://localhost:3000';
 
 export function fetchEntry() {
   return (dispatch) => {
-    axios.get('http://localhost:3000/post')
-      .then(response => dispatch({
-        type: FETCH_ENTRY_SUCESS,
-        entry: response.data,
-      }))
-      .catch(response => dispatch({
-        type: FETCH_ENTRY_FAIL,
-        error: response.error,
-      }));
+    axios.get(`${API_URL}/entry`)
+    .then(response => dispatch({
+      type: FETCH_ENTRY_SUCCESS,
+      entry: response.data,
+    }))
+    .catch(response => dispatch({
+      type: FETCH_ENTRY_FAILURE,
+      error: response,
+    }));
   };
 }
 
