@@ -1,12 +1,9 @@
 @import '../../styles/global-variables.scss';
 
 .new-entry-container {
+  display: flex;
+  flex-flow: row nowrap;
   width: 100%;
-  padding: 4px 34px;
   border-bottom: 1px dashed $icon-secondary;
   color: $icon-secondary;
-  
-  .new-entry {
-    font-size: 1em;
-  }
 }
