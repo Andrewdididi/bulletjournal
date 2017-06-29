@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { FETCH_ENTRY_SUCCESS,
-          FETCH_ENTRY_FAILURE,
-        } from './types';
+import * as types from '../constants/ActionTypes';
 
 const API_URL = 'http://localhost:3000';
 
@@ -9,11 +7,11 @@ export function fetchEntry() {
   return (dispatch) => {
     axios.get(`${API_URL}/entry`)
     .then(response => dispatch({
-      type: FETCH_ENTRY_SUCCESS,
+      type: types.FETCH_ENTRY_SUCCESS,
       entry: response.data,
     }))
     .catch(response => dispatch({
-      type: FETCH_ENTRY_FAILURE,
+      type: types.FETCH_ENTRY_FAILURE,
       error: response,
     }));
   };
