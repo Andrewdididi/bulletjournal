@@ -4,12 +4,23 @@ module.exports.storeEntry = (req, res) => {
   console.log('req.body is===', req.body);
 
   const data = {
-    type: 'event',
-    text: '9AM movies with jamie',
-    complete: false,
-    description: '',
-    tags: ['personal'],
-    date: new Date ('October 10, 2017'),
+    date: new Date('June 11, 2017'),
+    gratitude: {
+      text: 'Im thankful for holy spirit',
+    },
+    plan: {
+      entryType: 'event',
+      text: 'plan 5 year plan',
+      complete: false,
+      description: '',
+      tags: ['goal'],
+    },
+    lessons: {
+      text: 'Be on mom side, be on myside',
+    },
+    wins: {
+      text: 'I worked out today',
+    },
   };
 
   dbh.storeEntry(data)
