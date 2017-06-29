@@ -6,22 +6,24 @@ import thunk from 'redux-thunk';
 
 import reducer from '../../reducers';
 import EventList from '../../containers/EventList/EventList';
+import Navbar from '../../containers/Navbar/Navbar';
 import Day from '../Day/Day';
 
 require('./app.scss');
 
-const middleware = [logger, thunk];
+const middleware = [thunk, logger];
 const store = createStore(
   reducer,
   applyMiddleware(...middleware));
 
 const App = () => (
   <Provider store={store}>
-    <div className="app-container">
-      <EventList />
-      <h1 className="title">Bullet Journal</h1>
-      <Day date="June 24th Saturday" />
-      <Day date="June 25th Sunday" />
+    <div className="app">
+      <Navbar />
+      <div className="app-container">
+        <h1 className="title">Bullet Journal</h1>
+        <EventList />
+      </div>
     </div>
   </Provider>
 );
