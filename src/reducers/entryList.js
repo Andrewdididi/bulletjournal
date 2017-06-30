@@ -18,11 +18,11 @@ export default function (state = initialState, action) {
       });
     case types.FETCH_ENTRY_FAILURE:
       return action.error;
-    case types.ENTRY_PLAN:
-      return (disptach, getState) => {
-        const { entryList } = getState();
-        console.log('ENTRY_PLAN==REDUCER==entryList===', entryList);
-      };
+    case types.ENTRY_ITEM_CHANGE:
+      return Object.assign({}, state, {
+        entries: action.entries,
+      });
+      console.log('ENTRY_ITEM_CHANGE==REDUCER==entryList===', entryList);
     default:
       return state;
   }

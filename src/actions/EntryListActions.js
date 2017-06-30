@@ -31,24 +31,21 @@ export function newEntry(entry) {
   };
 }
 
-export function entryItemChange(entry) {
-  console.log('entryFunc===action===', entry);
-  return {
-    type: types.ENTRY_ITEM_CHANGE,
-    entry,
+export function entryItemChange({ entryID, sectionName, text, itemID }) {
+  return (dispatch, getState) => {
+    const { entryList } = getState();
+    const updateList = entryList.entries.map((entry) => {
+      if (entry._id === entryID) {
+        entry[sectionName] = entry[sectionName].map(item =>
+          item._id === itemID ? { ...item, text } : item
+        );
+      }
+      return entry;
+    });
+    return dispatch({
+      type: types.ENTRY_ITEM_CHANGE,
+      entries: updateList,
+    });
   };
 }
 
-export function saveGratitude(entry) {
-  return (dispatch) => {
-    axios.post(`${API_URL}/entry`, entry)
-    .then(() => dispatch({
-      type: types.NEW_GRATITUDE_SUCCESS,
-      entry,
-    }))
-    .catch(response => dispatch({
-      type: types.NEW_GRATITUDE_FAILURE,
-      error: response.error,
-    }));
-  };
-}
