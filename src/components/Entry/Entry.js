@@ -10,6 +10,7 @@ export default class Entry extends Component {
     edit: PropTypes.boolean,
     text: PropTypes.string,
     type: PropTypes.string,
+    sectionName: PropTypes.string,
     entryItemChange: PropTypes.func,
   }
   static defaultProps = {

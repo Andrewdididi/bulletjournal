@@ -45,7 +45,12 @@ export default class NewBulletEntry extends Component {
 
     return(
       <div className="new-entry-container" >
-        <Entry type={this.state.entryType} edit placeholder={this.state.placeholder} />
+        <Entry
+          type={this.state.entryType}
+          placeholder={this.state.placeholder}
+          sectionName={this.props.sectionName}
+          edit
+        />
       </div>
     );
   }

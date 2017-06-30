@@ -16,6 +16,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
     <DailyQuotes quote="Anything is possible" />
     <DailySection
       header="Morning Gratitude"
+      sectionName="gratitude"
       entryType="num1"
       placeholder="What are you grateful for?"
       data={entry.gratitude}
@@ -23,12 +24,14 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
     />
     <DailySection
       header="Game Plan"
+      sectionName="plan"
       placeholder="Today is a win if I..."
       data={entry.plan}
       entryItemChange={entryItemChange}
     />
     <DailySection
       header="Lessons Learned (Opportunities for improvement)"
+      sectionName="lessons"
       entryType="note"
       placeholder="What did I learn today?"
       data={entry.lessons}
@@ -36,6 +39,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
     />
     <DailySection
       header="Daily Wins"
+      sectionName="wins"
       entryType="note"
       placeholder="What are my wins today?"
       data={entry.wins}

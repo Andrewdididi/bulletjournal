@@ -15,6 +15,7 @@ const DailySection = ({ header, sectionName, entryType, placeholder, data, entry
         type={entry.entryType || entryType}
         text={entry.text}
         placeholder={placeholder}
+        sectionName={sectionName}
       />
     ))
   );
@@ -27,6 +28,7 @@ const DailySection = ({ header, sectionName, entryType, placeholder, data, entry
         entryItemChange={entryItemChange}
         type={entryType}
         placeholder={placeholder}
+        sectionName={sectionName}
         edit
       />
     </div>
