@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Entry from '../Entry/Entry';
 
 require('./newBulletEntry.scss');
 
 export default class NewBulletEntry extends Component {
+  static propTypes = {
+    text: PropTypes.string,
+    entryType: PropTypes.string,
+    placeholder: PropTypes.string,
+    sectionName: PropTypes.string,
+    entryItemChange: PropTypes.func.isRequired,
+    edit: PropTypes.boolean,
+  }
+  static defaultProps = {
+    text: '',
+    entryType: 'task',
+    placeholder: '',
+    newItemTextChange: null,
+  }
   constructor(props) {
     super(props);
-
-    this.state = { 
-      text: this.props.text || '' ,
-      entryType: this.props.type || 'task',
-      placeholder: this.props.placeholder || '',
-    };
+    this.state = { text: this.props.text };
 
     this.changeEventType = this.changeEventType.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.newItemTextChange = this.newItemTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,16 +33,14 @@ export default class NewBulletEntry extends Component {
     console.log('changeEntryType');
   }
 
-  handleChange(e) {
-    this.setState({ text: e.target.value });
+  newItemTextChange(inputText) {
+    this.setState({ text: inputText });
   }
 
   handleSubmit(e) {
     const text = e.target.value.trim();
     if (e.which === 13) {
-      this.props.newEntry({ date: 'June 19, 2017', plan: { entryType: 'task', text: this.state.text } });
       this.setState({ text: '' });
-      this.props.fetchEntry();
     }
   }
 
@@ -46,9 +54,12 @@ export default class NewBulletEntry extends Component {
     return(
       <div className="new-entry-container" >
         <Entry
-          type={this.state.entryType}
-          placeholder={this.state.placeholder}
+          text={this.state.text}
+          type={this.props.entryType}
+          placeholder={this.props.placeholder}
           sectionName={this.props.sectionName}
+          entryItemChange={this.props.entryItemChange}
+          newItemTextChange={this.newItemTextChange}
           edit
         />
       </div>

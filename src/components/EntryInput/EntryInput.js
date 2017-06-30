@@ -6,17 +6,23 @@ export default class EntryInput extends Component {
     text: PropTypes.string,
     placeholder: PropTypes.string,
     toggleEdit: PropTypes.func.isRequired,
-    entryItemChange: PropTypes.func.isRequired,
+    textChange: PropTypes.func.isRequired,
+    newItemTextChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    text: '',
+    newItemTextChange: null,
   }
   constructor(props) {
     super(props);
-    this.state = { text: this.props.text || ''};
+    this.state = {text: this.props.text};
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
   }
   onChange(e) {
-    this.setState({ text: e.target.value });
-    this.props.entryItemChange(this.state.text);
+    this.props.textChange(e.target.value);
+    this.props.newItemTextChange && this.props.newItemTextChange(e.target.value);
   }
   onKeyUp(e) {
     const text = e.target.value.trim();
@@ -30,7 +36,7 @@ export default class EntryInput extends Component {
         type="text" 
         className="entry-input"
         placeholder={this.props.placeholder}
-        value={this.state.text}
+        value={this.props.text}
         onChange={this.onChange}
         onKeyUp={this.onKeyUp}
         onBlur={this.props.toggleEdit}

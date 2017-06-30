@@ -8,7 +8,7 @@ import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 
 
 class EventList extends Component {
-  static propTypes = {
+  static PropTypes = {
     entryList: PropTypes.object.isRequired,
     entryItemChange: PropTypes.func.isRequired
   }
@@ -24,7 +24,6 @@ class EventList extends Component {
   }
 
   renderDay() {
-    console.log('this.props.entryList====', this.props.entryList);
     if (this.props.entryList.entries.length < 1) {
       return (
         <NewBulletEntry 
@@ -35,7 +34,7 @@ class EventList extends Component {
     }
     return this.props.entryList.entries.map(entry => (
       <Day 
-        entry={entry} 
+        entry={entry}
         newEntry={this.props.newEntry} 
         fetchEntry={this.props.fetchEntry}
         entryItemChange={this.props.entryItemChange}
