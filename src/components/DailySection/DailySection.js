@@ -7,10 +7,13 @@ import NewBulletEntry from '../NewBulletEntry/NewBulletEntry';
 
 require('./dailySection.scss');
 
-const DailySection = ({ header, sectionName, entryType, placeholder, data, entryItemChange }) => {
+const DailySection = ({ header, entryID, sectionName, entryType, placeholder, data, entryItemChange }) => {
   const renderList = () => (
-    data.map(entry => (
+    data.map((entry, index) => (
       <Entry
+        key={index}
+        entryID={entryID}
+        itemID={entry._id}
         entryItemChange={entryItemChange}
         type={entry.entryType || entryType}
         text={entry.text}
@@ -25,6 +28,7 @@ const DailySection = ({ header, sectionName, entryType, placeholder, data, entry
       <ListHeader name={header} />
       { renderList() }
       <NewBulletEntry
+        entryID={entryID}
         entryItemChange={entryItemChange}
         type={entryType}
         placeholder={placeholder}
@@ -36,6 +40,7 @@ const DailySection = ({ header, sectionName, entryType, placeholder, data, entry
 };
 
 DailySection.propTypes = {
+  entryID: PropTypes.string.isRequired,
   header: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   entryType: PropTypes.string,
