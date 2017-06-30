@@ -6,7 +6,7 @@ const SRC_DIR = path.join(__dirname, '/src');
 const DIST_DIR = path.join(__dirname, '/public');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   entry: [
     'babel-polyfill',
     'react-hot-loader/patch',
