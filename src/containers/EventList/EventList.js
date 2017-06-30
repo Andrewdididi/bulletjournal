@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types' 
 
-import { fetchEntry, entryPlan, newEntry } from '../../actions/EntryListActions';
+import { fetchEntry, entryItemChange } from '../../actions/EntryListActions';
 import Day from '../../components/Day/Day';
 import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 
@@ -10,7 +10,7 @@ import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 class EventList extends Component {
   static propTypes = {
     entryList: PropTypes.object.isRequired,
-    newEntry: PropTypes.func.isRequired
+    entryItemChange: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -38,7 +38,7 @@ class EventList extends Component {
         entry={entry} 
         newEntry={this.props.newEntry} 
         fetchEntry={this.props.fetchEntry}
-        entryPlan={this.props.entryPlan}
+        entryItemChange={this.props.entryItemChange}
       /> 
     ))
   }
@@ -61,8 +61,7 @@ function MapStateToProps(state) {
 function MapDispatchToProps(dispatch) {
   return {
     fetchEntry: () => dispatch(fetchEntry()),
-    entryPlan: input => dispatch(entryPlan(input)),
-    newEntry: input => dispatch(newEntry(input)),
+    entryItemChange: input => dispatch(entryItemChange(input)),
   };
 }
 

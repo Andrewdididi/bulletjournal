@@ -31,11 +31,11 @@ export function newEntry(entry) {
   };
 }
 
-export function entryPlan(plan) {
-  console.log('entryPlan===action===', plan);
+export function entryItemChange(entry) {
+  console.log('entryFunc===action===', entry);
   return {
-    type: types.ENTRY_PLAN,
-    plan,
+    type: types.ENTRY_ITEM_CHANGE,
+    entry,
   };
 }
 

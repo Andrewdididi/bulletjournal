@@ -10,36 +10,36 @@ import dateConverter from '../../lib/dateConverter';
 
 require('./day.scss');
 
-const Day = ({ entry, newEntry, fetchEntry, entryPlan }) => (
+const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
   <div className="day-container">
     <DateHeader date={dateConverter(entry.date)} />
     <DailyQuotes quote="Anything is possible" />
     <DailySection
-      header="Morning Gatitude"
+      header="Morning Gratitude"
       entryType="num1"
       placeholder="What are you grateful for?"
       data={entry.gratitude}
-      entryPlan={entryPlan}
+      entryItemChange={entryItemChange}
     />
     <DailySection
       header="Game Plan"
       placeholder="Today is a win if I..."
       data={entry.plan}
-      entryPlan={entryPlan}
+      entryItemChange={entryItemChange}
     />
     <DailySection
       header="Lessons Learned (Opportunities for improvement)"
       entryType="note"
       placeholder="What did I learn today?"
       data={entry.lessons}
-      entryPlan={entryPlan}
+      entryItemChange={entryItemChange}
     />
     <DailySection
       header="Daily Wins"
       entryType="note"
       placeholder="What are my wins today?"
       data={entry.wins}
-      entryPlan={entryPlan}
+      entryItemChange={entryItemChange}
     />
   </div>
 );

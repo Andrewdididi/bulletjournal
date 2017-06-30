@@ -6,7 +6,7 @@ export default class EntryInput extends Component {
     text: PropTypes.string,
     placeholder: PropTypes.string,
     toggleEdit: PropTypes.func.isRequired,
-    entryFunc: PropTypes.func.isRequired,
+    entryItemChange: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ export default class EntryInput extends Component {
   }
   onChange(e) {
     this.setState({ text: e.target.value });
-    this.props.entryFunc(this.state.text);
+    this.props.entryItemChange(this.state.text);
   }
   onKeyUp(e) {
     const text = e.target.value.trim();
@@ -41,9 +41,9 @@ export default class EntryInput extends Component {
 }
 
 EntryInput.propTypes = {
-  entryFunc: PropTypes.func.isRequired,
+  entryItemChange: PropTypes.func.isRequired,
 }
 
 EntryInput.defaultProps = {
-  entryFunc(){ console.log('hello')},
+  entryItemChange(){ console.log('hello')},
 }
