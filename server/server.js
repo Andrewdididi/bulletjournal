@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.post('/entry', rh.storeEntry);
 app.get('/entry', rh.fetchEntry);
+app.get('/entry/:id', rh.fetchSingleEntry);
 app.patch('/entry/:id', rh.patchSingleEntry);
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));

@@ -16,6 +16,13 @@ module.exports.fetchEntry = () => (
   .then(result => result)
   .error(err => console.log('ERROR FETCHING DB:', err))
 );
+
+module.exports.fetchSingleEntry = (id) => (
+  DailyEntry.find({ _id: id })
+  .then(result => result)
+  .error(err => console.log('ERROR FETCHING DB:', err))
+);
+
 module.exports.patchSingleEntry = (id, entry) => {
   const query = { _id: id };
   const options = { upsert: true };

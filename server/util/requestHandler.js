@@ -34,6 +34,11 @@ module.exports.fetchEntry = (req, res) => (
   .catch(err => res.status(500).send(err))
 );
 
+module.exports.fetchSingleEntry = (req, res) => (
+  dbh.fetchSingleEntry(req.params.id)
+  .then(result => res.send(result))
+  .catch(err => res.status(500).send(err))
+);
 module.exports.patchSingleEntry = (req, res) => (
   dbh.patchSingleEntry(req.params.id, req.body)
   .then(result => res.send(result))
