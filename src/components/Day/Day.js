@@ -10,7 +10,7 @@ import dateConverter from '../../lib/dateConverter';
 
 require('./day.scss');
 
-const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
+const Day = ({ entry, entryItemChange, newEntryItem, saveUpdateEntry }) => (
   <div className="day-container">
     <DateHeader date={dateConverter(entry.date)} />
     <DailyQuotes quote="Anything is possible" />
@@ -22,6 +22,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
       placeholder="What are you grateful for?"
       data={entry.gratitude}
       entryItemChange={entryItemChange}
+      newEntryItem={newEntryItem}
     />
     <DailySection
       entryID={entry._id}
@@ -30,6 +31,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
       placeholder="Today is a win if I..."
       data={entry.plan}
       entryItemChange={entryItemChange}
+      newEntryItem={newEntryItem} 
     />
     <DailySection
       entryID={entry._id}
@@ -39,6 +41,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
       placeholder="What did I learn today?"
       data={entry.lessons}
       entryItemChange={entryItemChange}
+      newEntryItem={newEntryItem}
     />
     <DailySection
       entryID={entry._id}
@@ -48,6 +51,7 @@ const Day = ({ entry, newEntry, fetchEntry, entryItemChange }) => (
       placeholder="What are my wins today?"
       data={entry.wins}
       entryItemChange={entryItemChange}
+      newEntryItem={newEntryItem}
     />
   </div>
 );

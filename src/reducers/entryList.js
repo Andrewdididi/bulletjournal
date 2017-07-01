@@ -15,6 +15,10 @@ export default function (state = initialState, action) {
       return action.error;
     case types.ENTRY_ITEM_CHANGE:
       return { ...state, entries: action.entries };
+    case types.NEW_ENTRY_SUCCESS:
+      return { ...state, entries: action.entries };
+    case types.NEW_ENTRY_FAILURE:
+      return action.error;
     default:
       return state;
   }

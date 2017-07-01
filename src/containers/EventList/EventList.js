@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types' 
 
-import { fetchEntry, entryItemChange } from '../../actions/EntryListActions';
+import { fetchEntry, entryItemChange, saveUpdateEntry, newEntryItem } from '../../actions/EntryListActions';
 import Day from '../../components/Day/Day';
 import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 
@@ -11,6 +11,7 @@ class EventList extends Component {
   static PropTypes = {
     entryList: PropTypes.object.isRequired,
     entryItemChange: PropTypes.func.isRequired
+    newEntryItem: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -38,6 +39,7 @@ class EventList extends Component {
         newEntry={this.props.newEntry} 
         fetchEntry={this.props.fetchEntry}
         entryItemChange={this.props.entryItemChange}
+        newEntryItem={this.props.newEntryItem}
       /> 
     ))
   }
@@ -61,6 +63,7 @@ function MapDispatchToProps(dispatch) {
   return {
     fetchEntry: () => dispatch(fetchEntry()),
     entryItemChange: input => dispatch(entryItemChange(input)),
+    newEntryItem: input => dispatch(newEntryItem(input)),
   };
 }
 

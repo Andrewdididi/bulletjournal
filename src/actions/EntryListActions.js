@@ -49,3 +49,26 @@ export function entryItemChange({ entryID, sectionName, text, itemID }) {
   };
 }
 
+export function newEntryItem({ text, entryID, sectionName, entryType }) {
+  return (dispatch, getState) => {
+    let updateEntry;
+    const { entryList } = getState();
+    const updateList = entryList.entries.map((entry) => {
+      if (entry._id === entryID) {
+        entry[sectionName].push({ text });
+        updateEntry = entry;
+      }
+      return entry;
+    });
+
+    axios.patch(`${API_URL}/entry/${entryID}`, updateEntry)
+    .then(() => dispatch({
+      type: types.NEW_ENTRY_SUCCESS,
+      entries: updateList,
+    }))
+    .catch(response => dispatch({
+      type: types.NEW_ENTRY_FAILURE,
+      error: response,
+    }));
+  };
+}

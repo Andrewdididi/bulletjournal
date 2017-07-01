@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'Prop-types';
+import PropTypes from 'prop-types';
 
 import ListHeader from '../ListHeader/ListHeader';
 import Entry from '../Entry/Entry';
@@ -7,7 +7,7 @@ import NewBulletEntry from '../NewBulletEntry/NewBulletEntry';
 
 require('./dailySection.scss');
 
-const DailySection = ({ header, entryID, sectionName, entryType, placeholder, data, entryItemChange }) => {
+const DailySection = ({ header, entryID, sectionName, entryType, placeholder, data, entryItemChange, newEntryItem, saveUpdateEntry }) => {
   const renderList = () => (
     data.map((entry, index) => (
       <Entry
@@ -15,10 +15,11 @@ const DailySection = ({ header, entryID, sectionName, entryType, placeholder, da
         entryID={entryID}
         itemID={entry._id}
         entryItemChange={entryItemChange}
-        type={entry.entryType || entryType}
+        entryType={entry.entryType || entryType}
         text={entry.text}
         placeholder={placeholder}
         sectionName={sectionName}
+        saveUpdateEntry={saveUpdateEntry}
       />
     ))
   );
@@ -30,7 +31,7 @@ const DailySection = ({ header, entryID, sectionName, entryType, placeholder, da
       <NewBulletEntry
         entryID={entryID}
         entryItemChange={entryItemChange}
-        type={entryType}
+        newEntryItem={newEntryItem}
         placeholder={placeholder}
         sectionName={sectionName}
         edit
