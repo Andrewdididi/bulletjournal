@@ -19,11 +19,14 @@ export default class NewBulletEntry extends Component {
     entryType: 'task',
     placeholder: '',
     newItemTextChange: null,
-    edit: false,
+    edit: true,
   }
   constructor(props) {
     super(props);
-    this.state = { text: this.props.text };
+    this.state = { 
+      text: this.props.text,
+      edit: true,
+    };
 
     this.changeEventType = this.changeEventType.bind(this);
     this.newItemTextChange = this.newItemTextChange.bind(this);
@@ -44,6 +47,7 @@ export default class NewBulletEntry extends Component {
     }
     this.props.newEntryItem(data);
     this.newItemTextChange('');
+    this.setState({ edit: false });
   }
   render() {
     const placeholder = {
@@ -62,7 +66,8 @@ export default class NewBulletEntry extends Component {
           entryItemChange={this.props.entryItemChange}
           newItemTextChange={this.newItemTextChange}
           handleNewSubmit={this.handleNewSubmit}
-          edit
+          edit={this.state.edit}
+          newItem
         />
       </div>
     );

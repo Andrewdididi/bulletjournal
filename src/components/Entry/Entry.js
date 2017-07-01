@@ -10,6 +10,7 @@ export default class Entry extends Component {
     key: PropTypes.number.isRequired,
     itemID: PropTypes.string.isRequired,
     edit: PropTypes.boolean,
+    newItem: PropTypes.boolean,
     entryID: PropTypes.string.isRequired,
     text: PropTypes.string,
     type: PropTypes.string,
@@ -20,7 +21,8 @@ export default class Entry extends Component {
     handleNewSubmit: PropTypes.func,
   }
   static defaultProps = {
-    edit: 'false',
+    edit: false,
+    newItem: false,
     text: '',
     type: 'task',
     placeholder: '',
@@ -69,7 +71,6 @@ export default class Entry extends Component {
     );
   }
   handleUpdateSubmit(inputText){
-    //inputText input action
     const data = {
       text: inputText,
       entryID: this.props.entryID,
@@ -95,6 +96,7 @@ export default class Entry extends Component {
         toggleEdit={this.toggleEdit}
         textChange={this.textChange}
         onEntryChange={this.onEntryChange}
+        newItem={this.props.newItem}
       />;
     
     return (

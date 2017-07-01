@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default class EntryInput extends Component {
   static propTypes = {
     text: PropTypes.string,
+    newItem: PropTypes.boolean,
     placeholder: PropTypes.string,
     toggleEdit: PropTypes.func.isRequired,
     textChange: PropTypes.func.isRequired,
@@ -16,6 +17,7 @@ export default class EntryInput extends Component {
     text: '',
     newItemTextChange: null,
     placeholder: '',
+    newItem: false,
   }
   constructor(props) {
     super(props);
@@ -24,14 +26,13 @@ export default class EntryInput extends Component {
     this.onKeyUp = this.onKeyUp.bind(this);
   }
   onChange(e) {
-    this.props.textChange(e.target.value);
-    this.props.newItemTextChange && this.props.newItemTextChange(e.target.value);
+    this.props.newItem ? this.props.newItemTextChange(e.target.value) : this.props.textChange(e.target.value)
   }
   onKeyUp(e) {
     const text = e.target.value.trim();
     if (e.which === 13 ) {
-      console.log('need to save this text');
-      this.props.handleNewSubmit ? this.props.handleNewSubmit(text) : this.props.handleUpdateSubmit(text);
+      console.log('need to save this text', this.props.newItem);
+      this.props.newItem ? this.props.handleNewSubmit(text) : this.props.handleUpdateSubmit(text);
     }
   }
   render() {
