@@ -32,6 +32,7 @@ const DailySection = ({ header, entryID, sectionName, entryType, placeholder, da
         entryID={entryID}
         entryItemChange={entryItemChange}
         newEntryItem={newEntryItem}
+        entryType={entryType}
         placeholder={placeholder}
         sectionName={sectionName}
         edit
@@ -47,6 +48,7 @@ DailySection.propTypes = {
   entryType: PropTypes.string,
   data: PropTypes.array,
   entryItemChange: PropTypes.func.isRequired,
+  saveUpdateEntry: PropTypes.func.isRequired,
 };
 
 DailySection.defaultProps = {

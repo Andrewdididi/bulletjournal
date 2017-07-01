@@ -1,5 +1,5 @@
 import React from 'react';
-import ProTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DateHeader from '../DateHeader/DateHeader';
 import Entry from '../Entry/Entry';
@@ -23,6 +23,7 @@ const Day = ({ entry, entryItemChange, newEntryItem, saveUpdateEntry }) => (
       data={entry.gratitude}
       entryItemChange={entryItemChange}
       newEntryItem={newEntryItem}
+      saveUpdateEntry={saveUpdateEntry}
     />
     <DailySection
       entryID={entry._id}
@@ -32,6 +33,7 @@ const Day = ({ entry, entryItemChange, newEntryItem, saveUpdateEntry }) => (
       data={entry.plan}
       entryItemChange={entryItemChange}
       newEntryItem={newEntryItem} 
+      saveUpdateEntry={saveUpdateEntry}  
     />
     <DailySection
       entryID={entry._id}
@@ -42,6 +44,7 @@ const Day = ({ entry, entryItemChange, newEntryItem, saveUpdateEntry }) => (
       data={entry.lessons}
       entryItemChange={entryItemChange}
       newEntryItem={newEntryItem}
+      saveUpdateEntry={saveUpdateEntry}      
     />
     <DailySection
       entryID={entry._id}
@@ -52,8 +55,15 @@ const Day = ({ entry, entryItemChange, newEntryItem, saveUpdateEntry }) => (
       data={entry.wins}
       entryItemChange={entryItemChange}
       newEntryItem={newEntryItem}
+      saveUpdateEntry={saveUpdateEntry}
     />
   </div>
 );
+
+Day.proTypes = {
+  entry: PropTypes.obj,
+  entryItemChange: PropTypes.func.isRequired,
+  newEntryItem: PropTypes.func.isRequired,
+};
 
 export default Day;

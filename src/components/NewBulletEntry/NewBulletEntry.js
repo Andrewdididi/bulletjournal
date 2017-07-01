@@ -7,18 +7,19 @@ require('./newBulletEntry.scss');
 
 export default class NewBulletEntry extends Component {
   static propTypes = {
-    text: PropTypes.string,
+    entryID: PropTypes.string.isRequired,
     entryType: PropTypes.string,
     placeholder: PropTypes.string,
-    sectionName: PropTypes.string,
+    sectionName: PropTypes.string.isRequired,
     entryItemChange: PropTypes.func.isRequired,
+    newEntryItem: PropTypes.func.isRequired,
     edit: PropTypes.boolean,
   }
   static defaultProps = {
-    text: '',
     entryType: 'task',
     placeholder: '',
     newItemTextChange: null,
+    edit: false,
   }
   constructor(props) {
     super(props);
@@ -26,24 +27,24 @@ export default class NewBulletEntry extends Component {
 
     this.changeEventType = this.changeEventType.bind(this);
     this.newItemTextChange = this.newItemTextChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNewSubmit = this.handleNewSubmit.bind(this);
   }
-
   changeEventType() {
     console.log('changeEntryType');
   }
-
   newItemTextChange(inputText) {
     this.setState({ text: inputText });
   }
-
-  handleSubmit(e) {
-    const text = e.target.value.trim();
-    if (e.which === 13) {
-      this.setState({ text: '' });
+  handleNewSubmit(inputText) {
+    const data = {
+      text: inputText,
+      entryID: this.props.entryID,
+      sectionName: this.props.sectionName,
+      entryType: this.props.type,
     }
+    this.props.newEntryItem(data);
+    this.newItemTextChange('');
   }
-
   render() {
     const placeholder = {
      task: 'Add Task: Buy Milk',
@@ -60,6 +61,7 @@ export default class NewBulletEntry extends Component {
           sectionName={this.props.sectionName}
           entryItemChange={this.props.entryItemChange}
           newItemTextChange={this.newItemTextChange}
+          handleNewSubmit={this.handleNewSubmit}
           edit
         />
       </div>

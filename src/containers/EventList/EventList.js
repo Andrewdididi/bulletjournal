@@ -10,7 +10,7 @@ import NewBulletEntry from '../../components/NewBulletEntry/NewBulletEntry';
 class EventList extends Component {
   static PropTypes = {
     entryList: PropTypes.object.isRequired,
-    entryItemChange: PropTypes.func.isRequired
+    entryItemChange: PropTypes.func.isRequired,
     newEntryItem: PropTypes.func.isRequired,
   }
 
@@ -40,6 +40,7 @@ class EventList extends Component {
         fetchEntry={this.props.fetchEntry}
         entryItemChange={this.props.entryItemChange}
         newEntryItem={this.props.newEntryItem}
+        saveUpdateEntry={this.props.saveUpdateEntry}
       /> 
     ))
   }
@@ -64,6 +65,7 @@ function MapDispatchToProps(dispatch) {
     fetchEntry: () => dispatch(fetchEntry()),
     entryItemChange: input => dispatch(entryItemChange(input)),
     newEntryItem: input => dispatch(newEntryItem(input)),
+    saveUpdateEntry: input => dispatch(saveUpdateEntry(input)),
   };
 }
 

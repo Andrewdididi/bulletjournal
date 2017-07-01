@@ -8,11 +8,14 @@ export default class EntryInput extends Component {
     toggleEdit: PropTypes.func.isRequired,
     textChange: PropTypes.func.isRequired,
     newItemTextChange: PropTypes.func,
+    handleNewSubmit: PropTypes.func,
+    handleUpdateSubmit: PropTypes.func,
   }
 
   static defaultProps = {
     text: '',
     newItemTextChange: null,
+    placeholder: '',
   }
   constructor(props) {
     super(props);
@@ -28,6 +31,7 @@ export default class EntryInput extends Component {
     const text = e.target.value.trim();
     if (e.which === 13 ) {
       console.log('need to save this text');
+      this.props.handleNewSubmit ? this.props.handleNewSubmit(text) : this.props.handleUpdateSubmit(text);
     }
   }
   render() {

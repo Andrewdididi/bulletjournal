@@ -16,6 +16,8 @@ export default class Entry extends Component {
     sectionName: PropTypes.string,
     entryItemChange: PropTypes.func,
     newItemTextChange: PropTypes.func,
+    newEntryItem: PropTypes.func,
+    handleNewSubmit: PropTypes.func,
   }
   static defaultProps = {
     edit: 'false',
@@ -28,13 +30,14 @@ export default class Entry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      edit: this.props.edit || false,
+      edit: this.props.edit,
       text: this.props.text,
     };
     this.toggleExpand = this.toggleExpand.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.textChange = this.textChange.bind(this);
     this.onEntryChange = this.onEntryChange.bind(this);
+    this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
   }
   toggleEdit() {
     console.log('toggleEdit');
@@ -51,13 +54,12 @@ export default class Entry extends Component {
     console.log('toggleExpand');
   }
   onEntryChange(inputText){
-    let data = {
+    const data = {
       text: inputText,
       entryID: this.props.entryID,
       itemID: this.props.itemID,
       sectionName: this.props.sectionName,
       entryType: this.props.type,
-      sectionPostion: this.props.key,
     }
     this.props.entryItemChange(data)
   }
@@ -66,15 +68,30 @@ export default class Entry extends Component {
       this.onEntryChange(inputText)
     );
   }
+  handleUpdateSubmit(inputText){
+    //inputText input action
+    const data = {
+      text: inputText,
+      entryID: this.props.entryID,
+      itemID: this.props.itemID,
+      sectionName: this.props.sectionName,
+      entryType: this.props.type,
+    }
+    this.props.saveUpdateEntry(data);
+    this.setState({ edit: false });
+  }
   render() {
-    const { type, sectionName, entryItemChange } = this.props;
+    const { text, type, placeholder, newItemTextChange, sectionName, handleNewSubmit } = this.props;
     const textEntry = <p className="entry-text" onClick={this.toggleEdit}>{this.props.text}</p>;
     const inputEntry = 
       <EntryInput 
         sectionName={sectionName} 
-        text={this.props.text} 
-        placeholder={this.props.placeholder} 
-        newItemTextChange={this.props.newItemTextChange}
+        text={text}
+        type={type} 
+        placeholder={placeholder} 
+        newItemTextChange={newItemTextChange}
+        handleNewSubmit={handleNewSubmit}
+        handleUpdateSubmit={this.handleUpdateSubmit}
         toggleEdit={this.toggleEdit}
         textChange={this.textChange}
         onEntryChange={this.onEntryChange}
