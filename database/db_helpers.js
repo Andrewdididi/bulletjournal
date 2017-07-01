@@ -9,8 +9,6 @@ module.exports.storeEntry = (entry) => {
   return DailyEntry.update(query, update, options)
   .then(result => console.log('SUCCESS STORING INTO DB:', result))
   .error(err => console.log('ERROR STORING INTO DB:', err))
-
-
 };
 
 module.exports.fetchEntry = () => (
@@ -18,3 +16,11 @@ module.exports.fetchEntry = () => (
   .then(result => result)
   .error(err => console.log('ERROR FETCHING DB:', err))
 );
+module.exports.patchSingleEntry = (id, entry) => {
+  const query = { _id: id };
+  const options = { upsert: true };
+  return DailyEntry.findOneAndUpdate(query, entry, options)
+  .then(result => result)
+  .error(err => console.log('ERROR FETCHING DB:', err));
+};
+
